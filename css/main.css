@@ -5,11 +5,13 @@
     margin: 0;    
     padding: 0;    
     box-sizing: border-box;
+    color: #313131;
 }
 
 main{
     width: 100vw;
     height: 100vh;
+    background-color: #fce088;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +27,7 @@ main > h1{
 main > section#questions{
     width: 90vw;
     height: 70vw;
-    border: 1px solid #000000;
+    border: 1px solid #313131;
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -51,5 +53,5 @@ main > section#answers > section{
     padding: 10px 0px;
     text-align: center;
     width: 100%;
-    border: 1px solid #000000;
+    border: 1px solid #313131;
 }
