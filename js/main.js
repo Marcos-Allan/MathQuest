@@ -2,11 +2,36 @@
 let question = document.querySelector('#question')
 let answer = document.querySelector('#answers')
 let pontos = 0
+let seconds = 0
+let minutes = 0
+let hours = 0
 let placar = document.querySelector('.plc')
+let tempo = document.querySelector('.timerText')
 
 function randomNumber(a, b) {
     return Math.floor(Math.random() * (b - a + 1)) + a
-  }
+}
+
+const setTimer = setInterval(function() {
+    seconds++
+    
+    tempo.innerText = `${hours}h: ${minutes}m: ${seconds}s`
+    if(hours == 0){
+        tempo.innerText = `${minutes}m:${seconds}s`
+    }
+    if(minutes == 0){
+        tempo.innerText = `${seconds}s`
+    }
+
+    if(seconds >= 59){
+        seconds = 0
+        minutes++
+    }else if(minutes >= 59){
+        seconds = 0
+        minutes = 0
+        hours++
+    }
+}, 1000);
 
 function newPergunt(){
     placar.innerText = `placar: ${pontos}`
@@ -18,8 +43,11 @@ function newPergunt(){
     const divErred2 = document.createElement('section')
 
     
-    divErred1.innerText = Math.floor(Math.random() * 1000)
-    divErred2.innerText = Math.floor(Math.random() * 1000)
+    divErred1.innerText = questCorrect + Math.floor(Math.random() * 10) + 1
+    
+    
+    divErred2.innerText = questCorrect - Math.floor(Math.random() * 50) + 1
+    
     divCorrect.innerText = questCorrect
     
     let pos = randomNumber(1, 3)
@@ -50,7 +78,7 @@ function newPergunt(){
 
     // SISTEMA DE INTERAÇÃO DAS RESPOSTAS
     let options = [...document.querySelectorAll('.option')]
-
+    
     options.map((opt) => {
         opt.addEventListener('click', adivinhar)
     })
@@ -58,6 +86,58 @@ function newPergunt(){
 }
 
 newPergunt()
+
+window.addEventListener('keydown', (e) => {
+    let options = [...document.querySelectorAll('.option')]
+    // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+    if(e.key == '1'){
+        if(eval(question.innerText) == options[0].innerText){
+            options[0].style.backgroundColor = '#91f549'
+            pontos++
+            setTimeout(() => {
+                answer.innerHTML = ''
+                newPergunt()
+            }, 600);
+        }else{
+            options[0].style.backgroundColor = '#fa756e'
+            setTimeout(() => {
+                options[0].style.backgroundColor = 'transparent'
+            }, 600);
+        }
+    }
+    // SE A TECLA PRESSIONADA FOR 2 TESTA A 2 OPÇÃO
+    if(e.key == '2'){
+        if(eval(question.innerText) == options[1].innerText){
+            options[1].style.backgroundColor = '#91f549'
+            pontos++
+            setTimeout(() => {
+                answer.innerHTML = ''
+                newPergunt()
+            }, 600);
+        }else{
+            options[1].style.backgroundColor = '#fa756e'
+            setTimeout(() => {
+                options[1].style.backgroundColor = 'transparent'
+            }, 600);
+        }
+    }
+    // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+    if(e.key == '3'){
+        if(eval(question.innerText) == options[2].innerText){
+            options[2].style.backgroundColor = '#91f549'
+            pontos++
+            setTimeout(() => {
+                answer.innerHTML = ''
+                newPergunt()
+            }, 600);
+        }else{
+            options[2].style.backgroundColor = '#fa756e'
+            setTimeout(() => {
+                options[2].style.backgroundColor = 'transparent'
+            }, 600);
+        }
+    }
+})
 
 function adivinhar(el){
     if(eval(question.innerText) == el.target.innerText){
