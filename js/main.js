@@ -1,7 +1,7 @@
 // VARIAVAEIS GLOBAIS
 let question = document.querySelector('#question')
 let answer = document.querySelector('#answers')
-let pontos = localStorage.getItem('math_quest_points') ? localStorage.getItem('math_quest_points') : 0
+let pontos = localStorage.getItem('math_quest_points_2') ? localStorage.getItem('math_quest_points_2') : 0
 let seconds = 0
 let minutes = 0
 let hours = 0
@@ -35,7 +35,7 @@ togglePassword.map((icon, i) => {
 
 function hideReceiverPoints() {
 
-    if(localStorage.getItem('math_quest_points') !== null) {
+    if(localStorage.getItem('math_quest_points_2') !== null) {
         pointsScreen.style.display = "none"
         window.addEventListener('keydown', (e) => {
         let options = [...document.querySelectorAll('.option')]
@@ -44,7 +44,7 @@ function hideReceiverPoints() {
             if(eval(question.innerText) == options[0].innerText){
                 options[0].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -61,7 +61,7 @@ function hideReceiverPoints() {
             if(eval(question.innerText) == options[1].innerText){
                 options[1].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -78,7 +78,7 @@ function hideReceiverPoints() {
             if(eval(question.innerText) == options[2].innerText){
                 options[2].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -93,7 +93,7 @@ function hideReceiverPoints() {
     })
 
     }else{
-        console.log(localStorage.getItem('math_quest_points'))
+        console.log(localStorage.getItem('math_quest_points_2'))
     }
 }
 
@@ -104,7 +104,7 @@ function getPoints(name, password) {
     if(name == "lajunna" && password == "140706") {
         console.log("pontos resgatados com sucesso!")
         
-        localStorage.setItem('math_quest_points', '1264')
+        localStorage.setItem('math_quest_points_2', '1264')
         pontos = 1264
         placar.innerText = `placar: ${pontos}`
         form.style.display = "none"
@@ -122,7 +122,7 @@ function getPoints(name, password) {
             if(eval(question.innerText) == options[0].innerText){
                 options[0].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -139,7 +139,7 @@ function getPoints(name, password) {
             if(eval(question.innerText) == options[1].innerText){
                 options[1].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -156,7 +156,7 @@ function getPoints(name, password) {
             if(eval(question.innerText) == options[2].innerText){
                 options[2].style.backgroundColor = '#91f549'
                 pontos++
-                localStorage.setItem('math_quest_points', pontos)
+                localStorage.setItem('math_quest_points_2', pontos)
                 setTimeout(() => {
                     answer.innerHTML = ''
                     newPergunt()
@@ -262,7 +262,7 @@ function adivinhar(el){
     if(eval(question.innerText) == el.target.innerText){
         el.target.style.backgroundColor = '#91f549'
         pontos++
-        localStorage.setItem('math_quest_points', pontos)
+        localStorage.setItem('math_quest_points_2', pontos)
         setTimeout(() => {
             answer.innerHTML = ''
             newPergunt()
