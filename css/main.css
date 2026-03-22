@@ -81,3 +81,130 @@ main > section.telas > section#answers > section{
     border: 1px solid #313131;
     transition: .4s;
 }
+
+main > section#points {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main > section#points > form {
+    width: 80%;
+    max-width: 600px;
+    background-color: #f2f2f2;
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    /* display: none; */
+}
+
+main > section#points > form > input.inp {
+    padding: 4px 2px;
+    background-color: #f2f2f2;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+main > section#points > form > div {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 4px 0px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+main > section#points > form > div > input {
+    border: 0px;
+    height: 100%;
+    outline: none;
+    padding: 0px 2px;
+    text-transform: uppercase;
+    background-color: transparent;
+    flex-grow: 1;
+}
+
+main > section#points > form > div > i {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+    margin: 4px;
+}
+
+main > section#points > form > input[type="submit"]{
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px;
+    background-color: #1fd163;
+    color: #f2f2f2;
+    border: 1px solid #1fd163;
+    margin-top: 4px;
+    transition: all .3s;
+
+    &:focus, &:hover {
+        background-color: transparent;
+        color: #1fd163;
+    }
+}
+
+main > section#points > section#congratulations {
+    display: none;
+    width: 80%;
+    border-radius: 6px;
+    padding: 6px 3px;
+    text-align: center;
+    animation: bgRainbow 1s linear infinite;
+}
+
+@keyframes bgRainbow {
+    0%   { background: #FF55C3; } /* rosa */
+    50%  { background: #9D60FF; } /* roxo */
+    100% { background: #FF55C3; }
+}
+
+main > section#points > section#congratulations > p.text-rainbow > span.juju {
+    animation: textRainbow 1s linear infinite;
+    font-weight: bold;
+    font-size: 1.3em;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #FF55C3,
+        0 0 20px #9D60FF,
+        0 0 30px #FF55C3;
+}
+
+@keyframes textRainbow {
+    0%   { color: #9D60FF; }
+    50%  { color: #FF55C3; }
+    100% { color: #9D60FF; }
+}
+
+main > section#points > section#congratulations > p.text-rainbow > span.emoji {
+    font-size: 40px;
+    display: inline-block;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+
+  92%, 96% {
+    transform: scaleY(0.1);
+  }
+}

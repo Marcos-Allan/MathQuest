@@ -1,12 +1,183 @@
 // VARIAVAEIS GLOBAIS
 let question = document.querySelector('#question')
 let answer = document.querySelector('#answers')
-let pontos = 0
+let pontos = localStorage.getItem('math_quest_points') ? localStorage.getItem('math_quest_points') : 0
 let seconds = 0
 let minutes = 0
 let hours = 0
 let placar = document.querySelector('.plc')
 let tempo = document.querySelector('.timerText')
+
+const pointsScreen = document.querySelector('#points')
+const congratulationsScreen = document.querySelector("#congratulations")
+
+const form = document.querySelector('#form')
+
+let name = document.querySelector('#name')
+let password = document.querySelector('#password')
+let togglePassword = [...document.querySelectorAll('i')]
+
+togglePassword[1].style.display = "none"
+
+togglePassword.map((icon, i) => {
+    icon.addEventListener('click', () => {
+        if(i == 0) {
+            togglePassword[0].style.display = "none"
+            togglePassword[1].style.display = "block"
+            password.type = "text"
+        }else{
+            togglePassword[1].style.display = "none"
+            togglePassword[0].style.display = "block"
+            password.type = "password"
+        }
+    })
+})
+
+function hideReceiverPoints() {
+
+    if(localStorage.getItem('math_quest_points') !== null) {
+        pointsScreen.style.display = "none"
+        window.addEventListener('keydown', (e) => {
+        let options = [...document.querySelectorAll('.option')]
+        // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+        if(e.key == '1'){
+            if(eval(question.innerText) == options[0].innerText){
+                options[0].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[0].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[0].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+        // SE A TECLA PRESSIONADA FOR 2 TESTA A 2 OPÇÃO
+        if(e.key == '2'){
+            if(eval(question.innerText) == options[1].innerText){
+                options[1].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[1].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[1].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+        // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+        if(e.key == '3'){
+            if(eval(question.innerText) == options[2].innerText){
+                options[2].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[2].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[2].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+    })
+
+    }else{
+        console.log(localStorage.getItem('math_quest_points'))
+    }
+}
+
+document.addEventListener("DOMContentLoaded", hideReceiverPoints);
+
+function getPoints(name, password) {
+
+    if(name == "lajunna" && password == "140706") {
+        console.log("pontos resgatados com sucesso!")
+        
+        localStorage.setItem('math_quest_points', '1264')
+        pontos = 1264
+        placar.innerText = `placar: ${pontos}`
+        form.style.display = "none"
+        congratulationsScreen.style.display = "block"
+
+        setTimeout(() => {
+            hideReceiverPoints()
+        }, 4000);
+    }else{
+        pointsScreen.style.display = "none"
+        window.addEventListener('keydown', (e) => {
+        let options = [...document.querySelectorAll('.option')]
+        // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+        if(e.key == '1'){
+            if(eval(question.innerText) == options[0].innerText){
+                options[0].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[0].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[0].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+        // SE A TECLA PRESSIONADA FOR 2 TESTA A 2 OPÇÃO
+        if(e.key == '2'){
+            if(eval(question.innerText) == options[1].innerText){
+                options[1].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[1].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[1].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+        // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
+        if(e.key == '3'){
+            if(eval(question.innerText) == options[2].innerText){
+                options[2].style.backgroundColor = '#91f549'
+                pontos++
+                localStorage.setItem('math_quest_points', pontos)
+                setTimeout(() => {
+                    answer.innerHTML = ''
+                    newPergunt()
+                }, 600);
+            }else{
+                options[2].style.backgroundColor = '#fa756e'
+                setTimeout(() => {
+                    options[2].style.backgroundColor = 'transparent'
+                }, 600);
+            }
+        }
+    })
+    }
+    
+}
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    getPoints(String(name.value).toLowerCase(), String(password.value).toLowerCase())
+})
 
 function randomNumber(a, b) {
     return Math.floor(Math.random() * (b - a + 1)) + a
@@ -41,7 +212,6 @@ function newPergunt(){
     const divCorrect = document.createElement('section')
     const divErred1 = document.createElement('section')
     const divErred2 = document.createElement('section')
-
     
     divErred1.innerText = questCorrect + Math.floor(Math.random() * 10) + 1
     
@@ -81,68 +251,18 @@ function newPergunt(){
     
     options.map((opt) => {
         opt.addEventListener('click', adivinhar)
+        opt.style.cursor = 'pointer'
     })
     
 }
 
 newPergunt()
 
-window.addEventListener('keydown', (e) => {
-    let options = [...document.querySelectorAll('.option')]
-    // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
-    if(e.key == '1'){
-        if(eval(question.innerText) == options[0].innerText){
-            options[0].style.backgroundColor = '#91f549'
-            pontos++
-            setTimeout(() => {
-                answer.innerHTML = ''
-                newPergunt()
-            }, 600);
-        }else{
-            options[0].style.backgroundColor = '#fa756e'
-            setTimeout(() => {
-                options[0].style.backgroundColor = 'transparent'
-            }, 600);
-        }
-    }
-    // SE A TECLA PRESSIONADA FOR 2 TESTA A 2 OPÇÃO
-    if(e.key == '2'){
-        if(eval(question.innerText) == options[1].innerText){
-            options[1].style.backgroundColor = '#91f549'
-            pontos++
-            setTimeout(() => {
-                answer.innerHTML = ''
-                newPergunt()
-            }, 600);
-        }else{
-            options[1].style.backgroundColor = '#fa756e'
-            setTimeout(() => {
-                options[1].style.backgroundColor = 'transparent'
-            }, 600);
-        }
-    }
-    // SE A TECLA PRESSIONADA FOR 1 TESTA A 1 OPÇÃO
-    if(e.key == '3'){
-        if(eval(question.innerText) == options[2].innerText){
-            options[2].style.backgroundColor = '#91f549'
-            pontos++
-            setTimeout(() => {
-                answer.innerHTML = ''
-                newPergunt()
-            }, 600);
-        }else{
-            options[2].style.backgroundColor = '#fa756e'
-            setTimeout(() => {
-                options[2].style.backgroundColor = 'transparent'
-            }, 600);
-        }
-    }
-})
-
 function adivinhar(el){
     if(eval(question.innerText) == el.target.innerText){
         el.target.style.backgroundColor = '#91f549'
         pontos++
+        localStorage.setItem('math_quest_points', pontos)
         setTimeout(() => {
             answer.innerHTML = ''
             newPergunt()
